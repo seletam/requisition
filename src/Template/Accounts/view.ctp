@@ -4,24 +4,17 @@
  * @var \App\Model\Entity\Account $account
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Account'), ['action' => 'edit', $account->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Account'), ['action' => 'delete', $account->id], ['confirm' => __('Are you sure you want to delete # {0}?', $account->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Accounts'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Account'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Parent Accounts'), ['controller' => 'Accounts', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Parent Account'), ['controller' => 'Accounts', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Account Types'), ['controller' => 'AccountTypes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Account Type'), ['controller' => 'AccountTypes', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Child Accounts'), ['controller' => 'Accounts', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Child Account'), ['controller' => 'Accounts', 'action' => 'add']) ?> </li>
+<div class="row top-header-inner">
+<div class="col-md-3">
+    <ul class="list-group">
+        <li class="active"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Account'), ['controller' => 'Accounts', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Account Type'), ['controller' => 'Accounts', 'action' => 'index']) ?></li>
     </ul>
-</nav>
-<div class="accounts view large-9 medium-8 columns content">
+</div>
+<div class="col-md-9">
     <h3><?= h($account->name) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-striped">
         <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($account->name) ?></td>
@@ -38,7 +31,7 @@
     <div class="related">
         <h4><?= __('Sub accounts') ?></h4>
         <?php if (!empty($account->child_accounts)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-bordered">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
@@ -58,4 +51,5 @@
         </table>
         <?php endif; ?>
     </div>
+</div>
 </div>

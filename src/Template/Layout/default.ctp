@@ -25,31 +25,39 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-
+<?php
+echo $this->Html->css('requisition.css');
+echo $this->Html->css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+echo $this->Html->script([
+    'https://code.jquery.com/jquery-1.12.4.min.js',
+    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'
+]);?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+	
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+     <?php echo $this->Navbar->create('School PO', ['fixed' => 'top', 'inverse' => true]);
+echo $this->Navbar->beginMenu();
+    echo $this->Navbar->link('Link', '/', ['class' => 'active']);
+    echo $this->Navbar->link('Blog', ['controller' => 'pages', 'action' => 'test']);
+    echo $this->Navbar->beginMenu('Dropdown');
+        echo $this->Navbar->header('Header 1');
+        echo $this->Navbar->link('Action');
+        echo $this->Navbar->link('Another action');
+        echo $this->Navbar->link('Something else here');
+        echo $this->Navbar->divider();
+        echo $this->Navbar->header('Header 2');
+        echo $this->Navbar->link('Another action');
+    echo $this->Navbar->endMenu();
+echo $this->Navbar->endMenu();
+echo $this->Navbar->text('Signed in as <a href="#" class="classtest">Admin</a>, <a href="#">Log Out</a>');
+echo $this->Navbar->end();?>
+    
+    <div class="container">
+		<?= $this->Flash->render() ?>    
+		<?= $this->fetch('content') ?>
     </div>
     <footer>
     </footer>

@@ -198,4 +198,7 @@ Type::build('timestamp')
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
-Plugin::load('Twit', ['bootstrap' => false, 'routes' => true]);
+//Plugin::load('Twit', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('Bootstrap', ['bootstrap' => true, 'routes' => true]);
+//Plugin::load('AdminLTE', ['bootstrap' => true, 'routes' => true]);
+

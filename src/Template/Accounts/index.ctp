@@ -4,24 +4,24 @@
  * @var \App\Model\Entity\Account[]|\Cake\Collection\CollectionInterface $accounts
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Account'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Account Types'), ['controller' => 'AccountTypes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Account Type'), ['controller' => 'AccountTypes', 'action' => 'add']) ?></li>
+<div class="row top-header-inner">
+<div class="col-md-3">
+    <ul class="list-group">
+        <li class="active"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Account'), ['controller' => 'Accounts', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Account Type'), ['controller' => 'Accounts', 'action' => 'index']) ?></li>
     </ul>
-</nav>
-<div class="accounts index large-9 medium-8 columns content">
+</div>
+<div class="col-md-9">
     <h3><?= __('Accounts') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('account_type_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('parent_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th>id</th>
+                <th>name</th>
+                <th>account_type_id</th>
+                <th>parent_id</th>
+                <th><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>

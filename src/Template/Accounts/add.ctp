@@ -4,14 +4,15 @@
  * @var \App\Model\Entity\Account $account
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Accounts'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Account Type'), ['controller' => 'AccountTypes', 'action' => 'add']) ?></li>
+<div class="row top-header-inner">
+<div class="col-md-3">
+    <ul class="list-group">
+        <li class="active"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Account'), ['controller' => 'Accounts', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Account Type'), ['controller' => 'Accounts', 'action' => 'index']) ?></li>
     </ul>
-</nav>
-<div class="accounts form large-9 medium-8 columns content">
+</div>
+<div class="col-md-9">
     <?= $this->Form->create($account) ?>
     <fieldset>
         <legend><?= __('Add Account') ?></legend>
@@ -23,4 +24,5 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+</div>
 </div>

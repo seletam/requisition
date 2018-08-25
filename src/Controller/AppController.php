@@ -46,7 +46,7 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
 		$this->loadComponent('Auth', [
-            'loginRedirect' => [
+            'loginAction' => [
                 'controller' => 'pages',
                 'action' => 'home'
             ],
@@ -67,4 +67,25 @@ class AppController extends Controller
         $this->set('username', $this->Auth->user('username'));
         // $this->Auth->allow('Add');
     }
+	
+	public $helpers = [
+    'Form' => [
+        'className' => 'Bootstrap.Form'
+    ],
+    'Html' => [
+        'className' => 'Bootstrap.Html'
+    ],
+    'Modal' => [
+        'className' => 'Bootstrap.Modal'
+    ],
+    'Navbar' => [
+        'className' => 'Bootstrap.Navbar'
+    ],
+    'Paginator' => [
+        'className' => 'Bootstrap.Paginator'
+    ],
+    'Panel' => [
+        'className' => 'Bootstrap.Panel'
+    ]
+];
 }

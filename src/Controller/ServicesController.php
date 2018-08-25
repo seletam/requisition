@@ -20,11 +20,8 @@ class ServicesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['AccountTypes']
-        ];
-        $services = $this->paginate($this->Services);
-
+        $services = $this->Services->find()->contain(['AccountTypes'])->order(['account_type_id']);
+        
         $this->set(compact('services'));
     }
 

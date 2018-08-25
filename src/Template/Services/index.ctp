@@ -4,23 +4,23 @@
  * @var \App\Model\Entity\Service[]|\Cake\Collection\CollectionInterface $services
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<div class="row top-header-inner">
+<div class="col-md-3">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Service'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Account Types'), ['controller' => 'AccountTypes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Account Type'), ['controller' => 'AccountTypes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Service'), ['controller' => 'Services', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Service'), ['controller' => 'Services', 'action' => 'index']) ?></li>
     </ul>
-</nav>
-<div class="services index large-9 medium-8 columns content">
+</div>
+<div class="col-md-9">
     <h3><?= __('Services') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('account_type_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th><?= ('id') ?></th>
+                <th><?= ('name') ?></th>
+                <th><?= ('account_type_id') ?></th>
+                <th><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -38,14 +38,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+</div>
 </div>
