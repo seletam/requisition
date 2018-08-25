@@ -4,18 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Account Entity
+ * Access Entity
  *
  * @property int $id
- * @property string $name
- * @property int $account_type_id
- * @property int $parent_id
+ * @property int $user_id
+ * @property string $module_name
  *
- * @property \App\Model\Entity\Account $parent_account
- * @property \App\Model\Entity\Account[] $child_accounts
- * @property \App\Model\Entity\AccountType $account_type
+ * @property \App\Model\Entity\User $user
  */
-class Account extends Entity
+class Access extends Entity
 {
 
     /**
@@ -28,11 +25,8 @@ class Account extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'account_type_id' => true,
-        'parent_id' => true,
-        'parent_account' => true,
-        'child_accounts' => true,
-        'account_type' => true
+        'user_id' => true,
+        'module_name' => true,
+        'user' => true
     ];
 }

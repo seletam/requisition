@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * AccountType Controller
+ * AccountTypes Controller
  *
- * @property \App\Model\Table\AccountTypeTable $AccountType
+ * @property \App\Model\Table\AccountTypesTable $AccountTypes
  *
  * @method \App\Model\Entity\AccountType[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class AccountTypeController extends AppController
+class AccountTypesController extends AppController
 {
 
     /**
@@ -20,9 +20,9 @@ class AccountTypeController extends AppController
      */
     public function index()
     {
-        $accountType = $this->paginate($this->AccountType);
+        $accountTypes = $this->paginate($this->AccountTypes);
 
-        $this->set(compact('accountType'));
+        $this->set(compact('accountTypes'));
     }
 
     /**
@@ -34,7 +34,7 @@ class AccountTypeController extends AppController
      */
     public function view($id = null)
     {
-        $accountType = $this->AccountType->get($id, [
+        $accountType = $this->AccountTypes->get($id, [
             'contain' => []
         ]);
 
@@ -48,10 +48,10 @@ class AccountTypeController extends AppController
      */
     public function add()
     {
-        $accountType = $this->AccountType->newEntity();
+        $accountType = $this->AccountTypes->newEntity();
         if ($this->request->is('post')) {
-            $accountType = $this->AccountType->patchEntity($accountType, $this->request->getData());
-            if ($this->AccountType->save($accountType)) {
+            $accountType = $this->AccountTypes->patchEntity($accountType, $this->request->getData());
+            if ($this->AccountTypes->save($accountType)) {
                 $this->Flash->success(__('The account type has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -70,12 +70,12 @@ class AccountTypeController extends AppController
      */
     public function edit($id = null)
     {
-        $accountType = $this->AccountType->get($id, [
+        $accountType = $this->AccountTypes->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $accountType = $this->AccountType->patchEntity($accountType, $this->request->getData());
-            if ($this->AccountType->save($accountType)) {
+            $accountType = $this->AccountTypes->patchEntity($accountType, $this->request->getData());
+            if ($this->AccountTypes->save($accountType)) {
                 $this->Flash->success(__('The account type has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -95,8 +95,8 @@ class AccountTypeController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $accountType = $this->AccountType->get($id);
-        if ($this->AccountType->delete($accountType)) {
+        $accountType = $this->AccountTypes->get($id);
+        if ($this->AccountTypes->delete($accountType)) {
             $this->Flash->success(__('The account type has been deleted.'));
         } else {
             $this->Flash->error(__('The account type could not be deleted. Please, try again.'));

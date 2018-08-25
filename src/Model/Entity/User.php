@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property int $employeeid
  * @property string $username
  * @property string $email
- * @property string $department_id
+ * @property int $department_id
  * @property \Cake\I18n\FrozenTime $createddate
  * @property int $privilegeid
  * @property string $password

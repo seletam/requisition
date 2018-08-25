@@ -7,22 +7,20 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Accounts Model
+ * Services Model
  *
  * @property \App\Model\Table\AccountTypesTable|\Cake\ORM\Association\BelongsTo $AccountTypes
- * @property \App\Model\Table\AccountsTable|\Cake\ORM\Association\BelongsTo $ParentAccounts
- * @property \App\Model\Table\AccountsTable|\Cake\ORM\Association\HasMany $ChildAccounts
  *
- * @method \App\Model\Entity\Account get($primaryKey, $options = [])
- * @method \App\Model\Entity\Account newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Account[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Account|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Account|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Account patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Account[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Account findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Service get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Service newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Service[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Service|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Service|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Service patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Service[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Service findOrCreate($search, callable $callback = null, $options = [])
  */
-class AccountsTable extends Table
+class ServicesTable extends Table
 {
 
     /**
@@ -35,20 +33,12 @@ class AccountsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('accounts');
+        $this->setTable('services');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('AccountTypes', [
             'foreignKey' => 'account_type_id'
-        ]);
-        $this->belongsTo('ParentAccounts', [
-            'className' => 'Accounts',
-            'foreignKey' => 'parent_id'
-        ]);
-        $this->hasMany('ChildAccounts', [
-            'className' => 'Accounts',
-            'foreignKey' => 'parent_id'
         ]);
     }
 
@@ -82,7 +72,6 @@ class AccountsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['account_type_id'], 'AccountTypes'));
-        $rules->add($rules->existsIn(['parent_id'], 'ParentAccounts'));
 
         return $rules;
     }

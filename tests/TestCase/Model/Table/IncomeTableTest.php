@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AccountsTable;
+use App\Model\Table\IncomeTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AccountsTable Test Case
+ * App\Model\Table\IncomeTable Test Case
  */
-class AccountsTableTest extends TestCase
+class IncomeTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AccountsTable
+     * @var \App\Model\Table\IncomeTable
      */
-    public $Accounts;
+    public $Income;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class AccountsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.accounts',
+        'app.income',
         'app.account_types'
     ];
 
@@ -36,8 +36,8 @@ class AccountsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Accounts') ? [] : ['className' => AccountsTable::class];
-        $this->Accounts = TableRegistry::getTableLocator()->get('Accounts', $config);
+        $config = TableRegistry::getTableLocator()->exists('Income') ? [] : ['className' => IncomeTable::class];
+        $this->Income = TableRegistry::getTableLocator()->get('Income', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class AccountsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Accounts);
+        unset($this->Income);
 
         parent::tearDown();
     }

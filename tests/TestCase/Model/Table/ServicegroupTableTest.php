@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AccountsTable;
+use App\Model\Table\ServicegroupTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AccountsTable Test Case
+ * App\Model\Table\ServicegroupTable Test Case
  */
-class AccountsTableTest extends TestCase
+class ServicegroupTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AccountsTable
+     * @var \App\Model\Table\ServicegroupTable
      */
-    public $Accounts;
+    public $Servicegroup;
 
     /**
      * Fixtures
@@ -24,8 +24,7 @@ class AccountsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.accounts',
-        'app.account_types'
+        'app.servicegroup'
     ];
 
     /**
@@ -36,8 +35,8 @@ class AccountsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Accounts') ? [] : ['className' => AccountsTable::class];
-        $this->Accounts = TableRegistry::getTableLocator()->get('Accounts', $config);
+        $config = TableRegistry::getTableLocator()->exists('Servicegroup') ? [] : ['className' => ServicegroupTable::class];
+        $this->Servicegroup = TableRegistry::getTableLocator()->get('Servicegroup', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class AccountsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Accounts);
+        unset($this->Servicegroup);
 
         parent::tearDown();
     }
@@ -68,16 +67,6 @@ class AccountsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

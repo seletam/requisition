@@ -8,6 +8,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Account'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Account Types'), ['controller' => 'AccountTypes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Account Type'), ['controller' => 'AccountTypes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="accounts index large-9 medium-8 columns content">
@@ -17,7 +19,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('accounttype') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('account_type_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('parent_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -27,7 +29,7 @@
             <tr>
                 <td><?= $this->Number->format($account->id) ?></td>
                 <td><?= h($account->name) ?></td>
-                <td><?= $this->Number->format($account->accounttype) ?></td>
+                <td><?= $account->has('account_type') ? $this->Html->link($account->account_type->name, ['controller' => 'AccountTypes', 'action' => 'view', $account->account_type->id]) : '' ?></td>
                 <td><?= $account->has('parent_account') ? $this->Html->link($account->parent_account->name, ['controller' => 'Accounts', 'action' => 'view', $account->parent_account->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $account->id]) ?>
@@ -38,14 +40,4 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
 </div>

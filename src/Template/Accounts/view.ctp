@@ -13,6 +13,8 @@
         <li><?= $this->Html->link(__('New Account'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Parent Accounts'), ['controller' => 'Accounts', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Parent Account'), ['controller' => 'Accounts', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Account Types'), ['controller' => 'AccountTypes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Account Type'), ['controller' => 'AccountTypes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Child Accounts'), ['controller' => 'Accounts', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Child Account'), ['controller' => 'Accounts', 'action' => 'add']) ?> </li>
     </ul>
@@ -25,39 +27,31 @@
             <td><?= h($account->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Parent Account') ?></th>
-            <td><?= $account->has('parent_account') ? $this->Html->link($account->parent_account->name, ['controller' => 'Accounts', 'action' => 'view', $account->parent_account->id]) : '' ?></td>
+            <th scope="row"><?= __('Account Type') ?></th>
+            <td><?= $account->account_type->name ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($account->id) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Accounttype') ?></th>
-            <td><?= $this->Number->format($account->accounttype) ?></td>
-        </tr>
     </table>
     <div class="related">
-        <h4><?= __('Related Accounts') ?></h4>
+        <h4><?= __('Sub accounts') ?></h4>
         <?php if (!empty($account->child_accounts)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Accounttype') ?></th>
-                <th scope="col"><?= __('Parent Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($account->child_accounts as $childAccounts): ?>
             <tr>
                 <td><?= h($childAccounts->id) ?></td>
                 <td><?= h($childAccounts->name) ?></td>
-                <td><?= h($childAccounts->accounttype) ?></td>
-                <td><?= h($childAccounts->parent_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Accounts', 'action' => 'view', $childAccounts->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Accounts', 'action' => 'edit', $childAccounts->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Accounts', 'action' => 'delete', $childAccounts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $childAccounts->id)]) ?>
+                    <!--<?= $this->Form->postLink(__('Delete'), ['controller' => 'Accounts', 'action' => 'delete', $childAccounts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $childAccounts->id)]) ?>-->
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -20,11 +20,7 @@ class AccountsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['ParentAccounts']
-        ];
-        $accounts = $this->paginate($this->Accounts);
-
+        $accounts = $this->Accounts->find()->contain(['ParentAccounts', 'AccountTypes'])->where(['Accounts.parent_id IS NULL']);
         $this->set(compact('accounts'));
     }
 
@@ -38,7 +34,7 @@ class AccountsController extends AppController
     public function view($id = null)
     {
         $account = $this->Accounts->get($id, [
-            'contain' => ['ParentAccounts', 'ChildAccounts']
+            'contain' => ['ParentAccounts', 'AccountTypes', 'ChildAccounts']
         ]);
 
         $this->set('account', $account);
@@ -61,11 +57,9 @@ class AccountsController extends AppController
             }
             $this->Flash->error(__('The account could not be saved. Please, try again.'));
         }
-        $parentAccounts = $this->Accounts->ParentAccounts->find('list', ['limit' => 200]);
-        $accounttype = $this->Accounts->AccountType->find('list', ['limit' => 200]);
-		
-        //$parentAccounts = $this->Accounts->ParentAccounts->find('list', ['limit' => 200])->where(['parent_id' => NULL]);
-        $this->set(compact('account', 'parentAccounts', 'accounttype'));
+        $parentAccounts = $this->Accounts->ParentAccounts->find('list', ['limit' => 200])->where(['ParentAccounts.parent_id IS NULL']);
+        $accountTypes = $this->Accounts->AccountTypes->find('list', ['limit' => 200]);
+        $this->set(compact('account', 'parentAccounts', 'accountTypes'));
     }
 
     /**
@@ -90,7 +84,8 @@ class AccountsController extends AppController
             $this->Flash->error(__('The account could not be saved. Please, try again.'));
         }
         $parentAccounts = $this->Accounts->ParentAccounts->find('list', ['limit' => 200]);
-        $this->set(compact('account', 'parentAccounts'));
+        $accountTypes = $this->Accounts->AccountTypes->find('list', ['limit' => 200]);
+        $this->set(compact('account', 'parentAccounts', 'accountTypes'));
     }
 
     /**

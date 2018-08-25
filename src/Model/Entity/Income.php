@@ -4,18 +4,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Account Entity
+ * Income Entity
  *
  * @property int $id
- * @property string $name
- * @property int $account_type_id
- * @property int $parent_id
+ * @property int $income_type_id
+ * @property float $Amount
+ * @property \Cake\I18n\FrozenTime $created
+ * @property int $services_id
  *
- * @property \App\Model\Entity\Account $parent_account
- * @property \App\Model\Entity\Account[] $child_accounts
  * @property \App\Model\Entity\AccountType $account_type
  */
-class Account extends Entity
+class Income extends Entity
 {
 
     /**
@@ -28,11 +27,10 @@ class Account extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'account_type_id' => true,
-        'parent_id' => true,
-        'parent_account' => true,
-        'child_accounts' => true,
+        'income_type_id' => true,
+        'Amount' => true,
+        'created' => true,
+        'services_id' => true,
         'account_type' => true
     ];
 }
