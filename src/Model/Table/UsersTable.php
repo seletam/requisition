@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\DepartmentsTable|\Cake\ORM\Association\BelongsTo $Departments
+ * @property \App\Model\Table\PrivilegesTable|\Cake\ORM\Association\BelongsTo $Privileges
+ * @property \App\Model\Table\AccessesTable|\Cake\ORM\Association\HasMany $Accesses
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -39,6 +41,12 @@ class UsersTable extends Table
 
         $this->belongsTo('Departments', [
             'foreignKey' => 'department_id'
+        ]);
+        $this->belongsTo('Privileges', [
+            'foreignKey' => 'privilege_id'
+        ]);
+        $this->hasMany('Accesses', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -83,10 +91,6 @@ class UsersTable extends Table
             ->allowEmpty('createddate');
 
         $validator
-            ->integer('privilegeid')
-            ->allowEmpty('privilegeid');
-
-        $validator
             ->scalar('password')
             ->maxLength('password', 100)
             ->allowEmpty('password');
@@ -106,6 +110,7 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['department_id'], 'Departments'));
+        $rules->add($rules->existsIn(['privilege_id'], 'Privileges'));
 
         return $rules;
     }

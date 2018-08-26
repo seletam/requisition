@@ -7,3 +7,9 @@
 	text-align: center;
 	margin: auto;
 }
+.menu-position {
+	float: right;
+}
+.main-header {
+	height: 250px;
+}

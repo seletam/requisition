@@ -45,7 +45,7 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
-		/*$this->loadComponent('Auth', [
+		$this->loadComponent('Auth', [
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -60,20 +60,20 @@ class AppController extends Controller
             ],
             'authorize' => ['Controller'],
             'unauthorizedRedirect' => '/users/login',
-        ]);*/
+        ]);
         /*
          * Enable the following component for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         $this->loadComponent('Security');
     }
-	/*public function isAuthorized($user = null)
+	public function isAuthorized($user = null)
     {
         return true;
-    }*/
-	 public function beforeFilter(Event $event) {
-        //$this->set('username', $this->Auth->user('username'));
-		//$this->Auth->allow('login');
+    }
+	public function beforeFilter(Event $event) {
+        $this->set('username', $this->Auth->user('username'));
+		$this->Auth->allow('login');
     }
 	public $helpers = [
     'Form' => [
@@ -86,7 +86,8 @@ class AppController extends Controller
         'className' => 'Bootstrap.Modal'
     ],
     'Navbar' => [
-        'className' => 'Bootstrap.Navbar'
+        'className' => 'Bootstrap.Navbar',
+		'autoActiveLink' => true
     ],
     'Paginator' => [
         'className' => 'Bootstrap.Paginator'

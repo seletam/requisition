@@ -27,17 +27,17 @@
             <tr>
                 <!--<th scope="col"><?= __('Id') ?></th>-->
                 <th><?= __('Name') ?></th>
-                <th><?= __('Actions') ?></th>
+                <!--<th><?= __('Actions') ?></th>-->
             </tr>
             <?php foreach ($account->child_accounts as $childAccounts): ?>
             <tr>
                 <!--<td><?= h($childAccounts->id) ?></td>-->
                 <td><?= h($childAccounts->name) ?></td>
-                <td class="actions">
+                <!--<td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Accounts', 'action' => 'view', $childAccounts->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Accounts', 'action' => 'edit', $childAccounts->id]) ?>
-                    <!--<?= $this->Form->postLink(__('Delete'), ['controller' => 'Accounts', 'action' => 'delete', $childAccounts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $childAccounts->id)]) ?>-->
-                </td>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Accounts', 'action' => 'delete', $childAccounts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $childAccounts->id)]) ?>
+                </td>-->
             </tr>
             <?php endforeach; ?>
         </table>

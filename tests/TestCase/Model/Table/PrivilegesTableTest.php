@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsersTable;
+use App\Model\Table\PrivilegesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsersTable Test Case
+ * App\Model\Table\PrivilegesTable Test Case
  */
-class UsersTableTest extends TestCase
+class PrivilegesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsersTable
+     * @var \App\Model\Table\PrivilegesTable
      */
-    public $Users;
+    public $Privileges;
 
     /**
      * Fixtures
@@ -24,10 +24,9 @@ class UsersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.users',
-        'app.departments',
         'app.privileges',
-        'app.accesses'
+        'app.menu',
+        'app.roles'
     ];
 
     /**
@@ -38,8 +37,8 @@ class UsersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = TableRegistry::getTableLocator()->get('Users', $config);
+        $config = TableRegistry::getTableLocator()->exists('Privileges') ? [] : ['className' => PrivilegesTable::class];
+        $this->Privileges = TableRegistry::getTableLocator()->get('Privileges', $config);
     }
 
     /**
@@ -49,7 +48,7 @@ class UsersTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Users);
+        unset($this->Privileges);
 
         parent::tearDown();
     }
@@ -70,16 +69,6 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

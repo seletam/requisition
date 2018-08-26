@@ -109,4 +109,18 @@ class IncomeController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	/**
+     * Services by type method
+     *
+     * @param string|null $id Income id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function getService($id = null)
+    {
+        $income = $this->Income->find()->where(['id' => $id]);
+        $this->set('income', $income);
+    }
+
 }

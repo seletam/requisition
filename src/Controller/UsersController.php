@@ -2,8 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use ReflectionClass;
-use ReflectionMethod;
+
 /**
  * Users Controller
  *
@@ -22,7 +21,7 @@ class UsersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Departments']
+            'contain' => ['Departments', 'Privileges']
         ];
         $users = $this->paginate($this->Users);
 
@@ -39,7 +38,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Departments']
+            'contain' => ['Departments', 'Privileges', 'Accesses']
         ]);
 
         $this->set('user', $user);
@@ -63,7 +62,8 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $departments = $this->Users->Departments->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'departments'));
+        $privileges = $this->Users->Privileges->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'departments', 'privileges'));
     }
 
     /**
@@ -88,7 +88,8 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $departments = $this->Users->Departments->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'departments'));
+        $privileges = $this->Users->Privileges->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'departments', 'privileges'));
     }
 
     /**
@@ -110,7 +111,8 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    public function login() {
+	
+	 public function login() {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -125,58 +127,4 @@ class UsersController extends AppController
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }
-	public function getControllers() {
-    $files = scandir('../src/Controller/');
-    $results = [];
-	//$results = ['actionName' => $results];
-    $ignoreList = [
-        '.', 
-        '..', 
-        'Component', 
-        'AppController.php',
-		'AuthController.php',
-		'ErrorController.php',
-		'PagesController.php',
-    ];
-    foreach($files as $file){
-		if(!in_array($file, $ignoreList)) {
-			$controller = explode('.', $file)[0];
-			array_push($results, str_replace('Controller', '', $controller));           
-		}
-    }
-    return $results;
-}
-public function getActions($controllerName) {
-
-    $className = 'App\\Controller\\'.$controllerName.'Controller';
-	if($className == "App\Controller\AuthController"){
-		$className = "App\Controller\UsersController";
-	}
-	
-    $class = new \ReflectionClass($className);
-	
-    $actions = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
-	
-    $results = [$controllerName => []];
-    //$results = ['ControllerName' => $results];
-    $ignoreList = ['beforeFilter', 'afterFilter', 'initialize', 'BeforeRender', 'isAuthorised', 'Auth', 'logout', 'login', 'getResources', 'getControllers', 'getActions'];
-
-    foreach($actions as $action){
-		if($action->class == $className && !in_array($action->name, $ignoreList)){
-            array_push($results[$controllerName], $action->name);
-        }
-    }
-    return $results;
-}
-	public function getResources(){
-		$controllers = $this->getControllers();
-		$resources = [];
-		foreach($controllers as $controller){
-			$actions = $this->getActions($controller);
-			$resource = array($actions);
-			array_push($resources, $actions);
-		}
-
-	 $this->set(compact('resources'));
-	}
 }

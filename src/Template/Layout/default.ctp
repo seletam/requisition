@@ -38,7 +38,7 @@ echo $this->Html->script([
 	
 </head>
 <body>
-     <?php echo $this->Navbar->create('School PO', ['fixed' => 'top', 'inverse' => true]);
+     <?php echo $this->Navbar->create('School PO', ['class' => 'main-header', 'fixed' => 'top', 'inverse' => true]);
 echo $this->Navbar->beginMenu();
     echo $this->Navbar->link('Link', '/', ['class' => 'active']);
     echo $this->Navbar->link('Blog', ['controller' => 'pages', 'action' => 'test']);
@@ -52,8 +52,11 @@ echo $this->Navbar->beginMenu();
         echo $this->Navbar->link('Another action');
     echo $this->Navbar->endMenu();
 echo $this->Navbar->endMenu();
-echo $this->Navbar->text('Signed in as <a href="#" class="classtest">Admin</a>, <a href="#">Log Out</a>');
-echo $this->Navbar->end();?>
+echo $this->Navbar->beginMenu();
+echo $this->Navbar->link('Logout', ['controller' => 'users', 'action' => 'logout']);	
+echo $this->Navbar->endMenu();
+echo $this->Navbar->end();
+?>
     
     <div class="container">
 		<?= $this->Flash->render() ?>    
