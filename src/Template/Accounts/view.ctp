@@ -19,27 +19,19 @@
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($account->name) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Account Type') ?></th>
-            <td><?= $account->account_type->name ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($account->id) ?></td>
-        </tr>
     </table>
     <div class="related">
         <h4><?= __('Sub accounts') ?></h4>
         <?php if (!empty($account->child_accounts)): ?>
         <table class="table table-bordered">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Name') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <!--<th scope="col"><?= __('Id') ?></th>-->
+                <th><?= __('Name') ?></th>
+                <th><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($account->child_accounts as $childAccounts): ?>
             <tr>
-                <td><?= h($childAccounts->id) ?></td>
+                <!--<td><?= h($childAccounts->id) ?></td>-->
                 <td><?= h($childAccounts->name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Accounts', 'action' => 'view', $childAccounts->id]) ?>

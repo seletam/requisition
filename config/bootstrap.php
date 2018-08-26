@@ -155,7 +155,7 @@ Security::setSalt(Configure::consume('Security.salt'));
  * If you are migrating from 2.x uncomment this code to
  * use a more compatible Mcrypt based implementation
  */
-//Security::engine(new \Cake\Utility\Crypto\Mcrypt());
+Security::engine(new \Cake\Utility\Crypto\Mcrypt());
 
 /*
  * Setup detectors for mobile and tablet.
@@ -193,10 +193,10 @@ Type::build('timestamp')
  * table, model, controller names or whatever other string is passed to the
  * inflection functions.
  */
-//Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
-//Inflector::rules('irregular', ['red' => 'redlings']);
-//Inflector::rules('uninflected', ['dontinflectme']);
-//Inflector::rules('transliteration', ['/å/' => 'aa']);
+Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
+Inflector::rules('irregular', ['red' => 'redlings']);
+Inflector::rules('uninflected', ['dontinflectme']);
+Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 //Plugin::load('Twit', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('Bootstrap', ['bootstrap' => true, 'routes' => true]);

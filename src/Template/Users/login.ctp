@@ -34,7 +34,7 @@
 
 </style>    
 <div class="container">
-    <div class="row">
+    <div class="row top-header-inner">
         <div class="col-md-4"></div>
         <div class="col-md-4">
 		<div class="row">
@@ -43,7 +43,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title">SANBio stakeholder</h3>
+                        <h3 class="modal-title">PO</h3>
                     </div>
                     <div class="modal-body">
                         <?= $this->Form->create(null, array('class' => 'form-group')); ?>

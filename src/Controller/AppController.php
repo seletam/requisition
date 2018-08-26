@@ -46,9 +46,9 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
 		$this->loadComponent('Auth', [
-            'loginAction' => [
-                'controller' => 'pages',
-                'action' => 'home'
+            'loginRedirect' => [
+                'controller' => 'accounts',
+                'action' => 'index'
             ],
             'authenticate' => [
                 'Form' => [
