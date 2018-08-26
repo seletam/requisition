@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d431123e1a7c1eb3e4bafe7c926191b",
+    "content-hash": "c26d96d80a264da9537f5d27d91af4e3",
     "packages": [
         {
             "name": "aura/intl",
@@ -51,6 +51,57 @@
                 "localization"
             ],
             "time": "2017-01-20T05:00:11+00:00"
+        },
+        {
+            "name": "cakedc/auth",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CakeDC/auth.git",
+                "reference": "b5f1c906b5b5fc1518882272b0f9bceca0808833"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CakeDC/auth/zipball/b5f1c906b5b5fc1518882272b0f9bceca0808833",
+                "reference": "b5f1c906b5b5fc1518882272b0f9bceca0808833",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CakeDC\\Auth\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakeDC",
+                    "homepage": "https://www.cakedc.com",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/CakeDC/auth/graphs/contributors"
+                }
+            ],
+            "description": "Auth objects for CakePHP",
+            "homepage": "https://github.com/CakeDC/auth",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "cakedc",
+                "cakephp"
+            ],
+            "time": "2018-04-26T11:58:06+00:00"
         },
         {
             "name": "cakephp/cakephp",

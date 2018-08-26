@@ -200,5 +200,5 @@ Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 //Plugin::load('Twit', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('Bootstrap', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('Migrations', ['bootstrap' => true, 'routes' => true]);
 //Plugin::load('AdminLTE', ['bootstrap' => true, 'routes' => true]);
-

@@ -11,7 +11,7 @@ use ReflectionMethod;
  *
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class UsersController extends AppController
+class MenuController extends AppController
 {
 
     /**
@@ -159,7 +159,7 @@ public function getActions($controllerName) {
 	
     $results = [$controllerName => []];
     //$results = ['ControllerName' => $results];
-    $ignoreList = ['beforeFilter', 'afterFilter', 'initialize', 'BeforeRender', 'isAuthorised', 'Auth', 'logout', 'login', 'getResources', 'getControllers', 'getActions'];
+    $ignoreList = ['beforeFilter', 'afterFilter', 'initialize', 'BeforeRender', 'isAuthorised', 'Auth', 'logout', 'login', 'getResources', 'getControllers', 'getActions', 'edit', 'delete'];
 
     foreach($actions as $action){
 		if($action->class == $className && !in_array($action->name, $ignoreList)){
@@ -168,7 +168,7 @@ public function getActions($controllerName) {
     }
     return $results;
 }
-	public function getResources(){
+	public function menu(){
 		$controllers = $this->getControllers();
 		$resources = [];
 		foreach($controllers as $controller){
