@@ -48,17 +48,21 @@ class PrivilegesController extends AppController
      */
     public function add()
     {
-        $privilege = $this->Privileges->newEntity();
+        $privilege = $this->Privileges->Roles->newEntity();
+		$resources = $this->privileges();
         if ($this->request->is('post')) {
             $privilege = $this->Privileges->patchEntity($privilege, $this->request->getData());
-            if ($this->Privileges->save($privilege)) {
-                $this->Flash->success(__('The privilege has been saved.'));
+				($privilege->is_delete[0]);
+				($privilege->is_create[0]);
+				($privilege->is_read[0]);
+			if ($this->Privileges->Roles->save($privilege)) {
+					$this->Flash->success(__('The privilege has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
+					return $this->redirect(['action' => 'index']);
+				}
             $this->Flash->error(__('The privilege could not be saved. Please, try again.'));
         }
-        $this->set(compact('privilege'));
+        $this->set(compact('privilege', 'resources'));
     }
 
     /**
@@ -70,11 +74,12 @@ class PrivilegesController extends AppController
      */
     public function edit($id = null)
     {
-        $privilege = $this->Privileges->get($id, [
-            'contain' => []
+		$privilege = $this->Privileges->get($id, [
+            'contain' => ['Roles']
         ]);
+		$resources = $this->privileges();
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $privilege = $this->Privileges->patchEntity($privilege, $this->request->getData());
+            $privilege = $this->Privileges->Roles->patchEntity($privilege, $this->request->getData());
             if ($this->Privileges->save($privilege)) {
                 $this->Flash->success(__('The privilege has been saved.'));
 
@@ -82,7 +87,7 @@ class PrivilegesController extends AppController
             }
             $this->Flash->error(__('The privilege could not be saved. Please, try again.'));
         }
-        $this->set(compact('privilege'));
+        $this->set(compact('resources', 'privilege'));
     }
 
     /**
@@ -104,4 +109,59 @@ class PrivilegesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+		public function getControllers() {
+    $files = scandir('../src/Controller/');
+    $results = [];
+	//$results = ['actionName' => $results];
+    $ignoreList = [
+        '.', 
+        '..', 
+        'Component', 
+        'AppController.php',
+		'ErrorController.php',
+		'PagesController.php',
+		'MenuController.php'
+    ];
+    foreach($files as $file){
+		if(!in_array($file, $ignoreList)) {
+			$controller = explode('.', $file)[0];
+			array_push($results, str_replace('Controller', '', $controller));           
+		}
+    }
+    return $results;
+}
+public function getActions($controllerName) {
+
+    $className = 'App\\Controller\\'.$controllerName.'Controller';
+	if($className == "App\Controller\AuthController"){
+		$className = "App\Controller\UsersController";
+	}
+	
+    $class = new \ReflectionClass($className);
+	
+    $actions = $class->getMethods(\ReflectionMethod::IS_PUBLIC);
+	
+    $results = [$controllerName => []];
+    //$results = ['ControllerName' => $results];
+    $ignoreList = ['beforeFilter', 'afterFilter', 'initialize', 'BeforeRender', 'isAuthorised', 'Auth', 'logout', 'login', 'getResources', 'getControllers', 'getActions'];
+
+    foreach($actions as $action){
+		if($action->class == $className && !in_array($action->name, $ignoreList)){
+            array_push($results[$controllerName], $action->name);
+        }
+    }
+    return $results;
+}
+	public function privileges(){
+		$controllers = $this->getControllers();
+		$resources = [];
+		foreach($controllers as $controller){
+			$actions = $this->getActions($controller);
+			$resource = array($actions);
+			array_push($resources, $actions);
+		}
+		
+		return $resources;
+	}	 
 }

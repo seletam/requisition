@@ -4,31 +4,57 @@
  * @var \App\Model\Entity\Privilege $privilege
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $privilege->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $privilege->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Privileges'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Menu'), ['controller' => 'Menu', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Menu'), ['controller' => 'Menu', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Roles'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Role'), ['controller' => 'Roles', 'action' => 'add']) ?></li>
+<div class="row top-header-inner">
+<div class="col-md-3">
+    <ul class="list-group">
+        <li class="active"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Menu Access'), ['controller' => 'Users', 'action' => 'getResources']) ?></li>
     </ul>
-</nav>
-<div class="privileges form large-9 medium-8 columns content">
-    <?= $this->Form->create($privilege) ?>
-    <fieldset>
-        <legend><?= __('Edit Privilege') ?></legend>
+</div>
+<div class="col-md-9">	
+	<?= $this->Form->create($privilege) ?>
+	 <fieldset>
+        <legend><?= __('Role') ?></legend>
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('is_superadmin');
+            echo $this->Form->control('module');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+	 <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+	
+	<legend><?= __('Permissions') ?></legend>
+	<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Module's Name</th>
+                <th></th>
+                <th>View</th>
+                <th>Create</th>
+                <th>Read</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+			<?php 
+			$i=0;
+			foreach ($resources as $cntr): 
+			$value = key($cntr);
+			?>
+            <tr>
+                <td><?= $i+1 ?></td>
+                <td><?= key($cntr) ?><?= $this->Form->hidden('module', ['value' => $value])?></td>
+                <td><?=  $this->Form->input('', ['type'=>'checkbox', 'label' => '', $privilege->roles[0]->is_read => 1 ? 'checked' : ' ', 'class' => 'checkbox']); ?></td>
+                <td><?=  $this->Form->input('is_read', ['type'=>'checkbox', 'name' => 'is_read[]', 'label' => '', $privilege->roles[0]->is_read => 1 ? 'checked' : '', 'class' => 'checkbox']); ?></td>
+                <td><?=  $this->Form->input('is_create', ['type'=>'checkbox', 'name' => 'is_create[]', 'label' => '', $privilege->roles[0]->is_create => 1 ? 'checked' : '', 'class' => 'checkbox']); ?></td>
+                <td><?=  $this->Form->input('is_view', ['type'=>'checkbox', 'name' => 'is_view[]', 'label' => '', $privilege->roles[0]->is_view => 1 ? 'checked' : '', 'class' => 'checkbox']); ?></td>
+                <td><?=  $this->Form->input('is_update', ['type'=>'checkbox', 'name' => 'is_update[]', 'label' => '', $privilege->roles[0]->is_update => 1 ? 'checked' : '', 'class' => 'checkbox']); ?></td>
+                <td><?=  $this->Form->input('is_delete', ['type'=>'checkbox', 'name' => 'is_delete[]', 'label' => '', $privilege->roles[0]->is_delete => 1 ? 'checked' : '', 'class' => 'checkbox']); ?></td>
+            </tr>
+            <?php $i++; endforeach; ?>
+        </tbody>
+    </table>
 </div>

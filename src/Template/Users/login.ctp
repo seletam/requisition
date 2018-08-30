@@ -33,8 +33,8 @@
     }
 
 </style>    
-<div class="container">
-    <div class="row top-header-inner">
+<div class="container top-header-inner">
+    <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
 		<div class="row">

@@ -53,7 +53,7 @@ echo $this->Navbar->beginMenu();
     echo $this->Navbar->endMenu();
 echo $this->Navbar->endMenu();
 echo $this->Navbar->beginMenu();
-echo $this->Navbar->link('Logout', ['controller' => 'users', 'action' => 'logout']);	
+echo $this->Navbar->link('Logout', ['controller' => 'users', 'action' => 'logout'], ['class' => 'navbar-right']);	
 echo $this->Navbar->endMenu();
 echo $this->Navbar->end();
 ?>

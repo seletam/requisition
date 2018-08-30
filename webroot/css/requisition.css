@@ -1,7 +1,6 @@
 .top-header-inner {
-	padding-top: 25px;
+	padding-top: 90px;
 	margin-top: 35px;
-	
 }
 .boxPosition {
 	text-align: center;
@@ -11,5 +10,9 @@
 	float: right;
 }
 .main-header {
-	height: 250px;
+	height: 100px;
+	padding-top: 25px;
+	margin: auto;
+	background-color: #758308;
+	color: red;
 }

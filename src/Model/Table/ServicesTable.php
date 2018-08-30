@@ -59,6 +59,11 @@ class ServicesTable extends Table
             ->maxLength('name', 45)
             ->allowEmpty('name');
 
+        $validator
+            ->scalar('amount')
+            ->maxLength('amount', 200)
+            ->allowEmpty('amount');
+
         return $validator;
     }
 
