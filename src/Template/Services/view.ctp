@@ -4,15 +4,9 @@
  * @var \App\Model\Entity\Service $service
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-3">
-    <ul class="list-group">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Service'), ['controller' => 'Services', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Service'), ['controller' => 'Services', 'action' => 'index']) ?></li>
-    </ul>
-</div>
-<div class="col-md-9">
+<div class="card mb-3">
+        <div class="card-header">View</div>
+        <div class="card-body">
     <h3><?= h($service->name) ?></h3>
     <table class="table table-striped">
         <tr>
@@ -28,4 +22,37 @@
             <td><?= $this->Number->format($service->id) ?></td>
         </tr>
     </table>
+	<?php if (!empty($service->requisitions)): ?>
+	<h4><?= __('Related') ?></h4>
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                    <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Service Id') ?></th>
+                <th scope="col"><?= __('Invoiceno') ?></th>
+                <th scope="col"><?= __('Invoicedate') ?></th>
+                <th scope="col"><?= __('Suppliername') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+             </tr>
+                  </thead>
+                  <tbody>
+            <?php foreach ($service->requisitions as $requisitions): ?>
+            <tr>
+                <td><?= h($requisitions->id) ?></td>
+                <td><?= h($requisitions->service_id) ?></td>
+                <td><?= h($requisitions->invoiceno) ?></td>
+                <td><?= h($requisitions->invoicedate) ?></td>
+                <td><?= h($requisitions->suppliername) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Requisitions', 'action' => 'view', $requisitions->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Requisitions', 'action' => 'edit', $requisitions->id]) ?>
+                    <!--<?= $this->Form->postLink(__('Delete'), ['controller' => 'Requisitions', 'action' => 'delete', $requisitions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $requisitions->id)]) ?>-->
+                </td>
+            </tr>
+            <?php endforeach; ?>
+			</tbody>
+		</table>
+        <?php endif; ?>
+    </div>
 </div>

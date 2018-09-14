@@ -4,17 +4,19 @@
  * @var \App\Model\Entity\Requisition[]|\Cake\Collection\CollectionInterface $requisitions
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-3">
-    <ul class="list-group">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Requisitions'), ['controller' => 'Requisitions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Requisition'), ['controller' => 'Requisitions', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('New Requisition'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Services'), ['controller' => 'Services', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Service'), ['controller' => 'Services', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Payments'), ['controller' => 'Payments', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Payment'), ['controller' => 'Payments', 'action' => 'add']) ?></li>
     </ul>
-</div>
-<div class="col-md-9">
+</nav>
+<div class="requisitions index large-9 medium-8 columns content">
     <h3><?= __('Requisitions') ?></h3>
-    <table class="table table-bordered">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -48,5 +50,14 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-</div>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
 </div>

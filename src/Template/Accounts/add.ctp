@@ -4,18 +4,11 @@
  * @var \App\Model\Entity\Account $account
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-3">
-    <ul class="list-group">
-        <li class="active"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Account'), ['controller' => 'Accounts', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Account Type'), ['controller' => 'Accounts', 'action' => 'index']) ?></li>
-    </ul>
-</div>
-<div class="col-md-9">
+<div class="card mb-3">
+    <div class="card-header">Add Account</div>
+    <div class="card-body">
     <?= $this->Form->create($account) ?>
     <fieldset>
-        <legend><?= __('Add Account') ?></legend>
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('account_type_id', ['options' => $accountTypes, 'empty' => true]);

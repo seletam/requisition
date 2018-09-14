@@ -18,7 +18,6 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Service $service
  * @property \App\Model\Entity\Payment[] $payments
- * @property \App\Model\Entity\Requisition[] $requisitions
  */
 class Requisition extends Entity
 {
@@ -42,7 +41,6 @@ class Requisition extends Entity
         'suppliername' => true,
         'createddate' => true,
         'service' => true,
-        'payments' => true,
-        'requisitions' => true
+        'payments' => true
     ];
 }

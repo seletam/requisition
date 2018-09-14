@@ -1,65 +1,56 @@
-<style type="text/css">
+<!DOCTYPE html>
+<html lang="en">
 
+  <head>
 
-    body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    .form-signin {
-        max-width: 300px;
-        padding: 19px 29px 29px;
-        margin: 0 auto 20px;
-        background-color: #fff;
-        border: 1px solid #e5e5e5;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-        box-shadow: 0 1px 2px rgba(0,0,0,.05);
-    }
-    .form-signin .form-signin-heading,
-    .form-signin .checkbox {
-        margin-bottom: 10px;
-    }
-    .form-signin input[type="text"],
-    .form-signin input[type="password"] {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
-    }
+    <title>Requisition Login</title>
 
-</style>    
-<div class="container top-header-inner">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-		<div class="row">
-		 <div class="col-sm-12">
-            <div class="model model-md">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">PO</h3>
-                    </div>
-                    <div class="modal-body">
-                        <?= $this->Form->create(null, array('class' => 'form-group')); ?>
-                        <?= $this->Form->input('username', ["class" => "form-control", "placeholder" => "Username"]); ?>
-                        <?= $this->Form->input('password', ["class" => "form-control", "placeholder" => "Password", "autocomplete" => true]); ?>
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <?= $this->Form->button('Login', array('class' => 'btn btn-large btn-primary')); ?>
-                    </div>
-                </div>
-                <?= $this->Form->end(); ?>
-                <div class="col-md-4"></div>
+    <?php
+	echo $this->Html->script('jquery.min.js');
+	echo $this->Html->script('jquery.dataTables.js');
+	echo $this->Html->script('dataTables.bootstrap4.js');
+	echo $this->Html->script('Chart.min.js');
+	echo $this->Html->script('sb-admin.min.js');
+	echo $this->Html->script('datatables-demo.js');
+	echo $this->Html->script('chart-area-demo.js');
+	echo $this->Html->css('sb-admin.css');
+	echo $this->Html->css('dataTables.bootstrap4.css');
+	echo $this->Html->css('all.min.css');
+	echo $this->Html->css('requisition.css');
+	echo $this->Html->css('bootstrap.min.css');
+	echo $this->Html->script('jquery.easing.min.js');
+	echo $this->Html->script('bootstrap.bundle.min.js');?>
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
+
+  </head>
+
+  <body class="bg-dark">
+
+  <div class="container">
+      <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+          <?= $this->Form->create(null); ?>
+            <div class="form-group">
+              <div class="form-label-group">
+			   <?= $this->Form->input('username', ["class" => "form-control", "placeholder" => "Username", "autofocus"=>true]); ?>
+              </div>
             </div>
-           </div>
+            <div class="form-group">
+              <div class="form-label-group">
+                 <?= $this->Form->input('password', ["class" => "form-control", "placeholder" => "Password", "required"=>true]); ?>
+              </div>
+            </div>
+			 <?= $this->Form->button('Login', array('class' => 'btn btn-large btn-primary')); ?>
+         <?= $this->Form->end(); ?>
         </div>
       </div>
     </div>
-</div>

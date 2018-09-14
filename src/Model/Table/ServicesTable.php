@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
  * Services Model
  *
  * @property \App\Model\Table\AccountTypesTable|\Cake\ORM\Association\BelongsTo $AccountTypes
+ * @property |\Cake\ORM\Association\HasMany $Budget
+ * @property \App\Model\Table\RequisitionsTable|\Cake\ORM\Association\HasMany $Requisitions
  *
  * @method \App\Model\Entity\Service get($primaryKey, $options = [])
  * @method \App\Model\Entity\Service newEntity($data = null, array $options = [])
@@ -40,6 +42,12 @@ class ServicesTable extends Table
         $this->belongsTo('AccountTypes', [
             'foreignKey' => 'account_type_id'
         ]);
+        $this->hasMany('Budget', [
+            'foreignKey' => 'service_id'
+        ]);
+        $this->hasMany('Requisitions', [
+            'foreignKey' => 'service_id'
+        ]);
     }
 
     /**
@@ -58,11 +66,6 @@ class ServicesTable extends Table
             ->scalar('name')
             ->maxLength('name', 45)
             ->allowEmpty('name');
-
-        $validator
-            ->scalar('amount')
-            ->maxLength('amount', 200)
-            ->allowEmpty('amount');
 
         return $validator;
     }

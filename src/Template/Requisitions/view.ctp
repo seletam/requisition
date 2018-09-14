@@ -4,17 +4,22 @@
  * @var \App\Model\Entity\Requisition $requisition
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-3">
-    <ul class="list-group">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Requisitions'), ['controller' => 'Requisitions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Requisition'), ['controller' => 'Requisitions', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Edit Requisition'), ['action' => 'edit', $requisition->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Requisition'), ['action' => 'delete', $requisition->id], ['confirm' => __('Are you sure you want to delete # {0}?', $requisition->id)]) ?> </li>
+        <li><?= $this->Html->link(__('List Requisitions'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Requisition'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Services'), ['controller' => 'Services', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Service'), ['controller' => 'Services', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Payments'), ['controller' => 'Payments', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Payment'), ['controller' => 'Payments', 'action' => 'add']) ?> </li>
     </ul>
-</div>
-<div class="col-md-9">
+</nav>
+<div class="requisitions view large-9 medium-8 columns content">
     <h3><?= h($requisition->id) ?></h3>
-    <table class="table table-striped">
+    <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Regnumber') ?></th>
             <td><?= h($requisition->regnumber) ?></td>
@@ -48,13 +53,14 @@
             <td><?= h($requisition->createddate) ?></td>
         </tr>
     </table>
-  
-    <h4><?= __('Request') ?></h4>
-    <?= $this->Text->autoParagraph(h($requisition->request)); ?>
-  
-    <h4><?= __('Related Payments') ?></h4>
+    <div class="row">
+        <h4><?= __('Request') ?></h4>
+        <?= $this->Text->autoParagraph(h($requisition->request)); ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Payments') ?></h4>
         <?php if (!empty($requisition->payments)): ?>
-        <table class="table table-bordered">
+        <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Chequeno') ?></th>
@@ -78,42 +84,6 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'Payments', 'action' => 'view', $payments->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Payments', 'action' => 'edit', $payments->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Payments', 'action' => 'delete', $payments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $payments->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    
-		<h4><?= __('Related Requisitions') ?></h4>
-        <?php if (!empty($requisition->requisitions)): ?>
-        <table class="table table-bordered">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Regnumber') ?></th>
-                <th scope="col"><?= __('Reqnumber') ?></th>
-                <th scope="col"><?= __('Request') ?></th>
-                <th scope="col"><?= __('Service Id') ?></th>
-                <th scope="col"><?= __('Invoiceno') ?></th>
-                <th scope="col"><?= __('Invoicedate') ?></th>
-                <th scope="col"><?= __('Suppliername') ?></th>
-                <th scope="col"><?= __('Createddate') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($requisition->requisitions as $requisitions): ?>
-            <tr>
-                <td><?= h($requisitions->id) ?></td>
-                <td><?= h($requisitions->regnumber) ?></td>
-                <td><?= h($requisitions->reqnumber) ?></td>
-                <td><?= h($requisitions->request) ?></td>
-                <td><?= h($requisitions->service_id) ?></td>
-                <td><?= h($requisitions->invoiceno) ?></td>
-                <td><?= h($requisitions->invoicedate) ?></td>
-                <td><?= h($requisitions->suppliername) ?></td>
-                <td><?= h($requisitions->createddate) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Requisitions', 'action' => 'view', $requisitions->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Requisitions', 'action' => 'edit', $requisitions->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Requisitions', 'action' => 'delete', $requisitions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $requisitions->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

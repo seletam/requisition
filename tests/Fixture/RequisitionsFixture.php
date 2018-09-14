@@ -55,9 +55,9 @@ class RequisitionsFixture extends TestFixture
                 'request' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'service_id' => 1,
                 'invoiceno' => 'Lorem ipsum dolor sit amet',
-                'invoicedate' => 1535575232,
+                'invoicedate' => 1536497305,
                 'suppliername' => 'Lorem ipsum dolor sit amet',
-                'createddate' => 1535575232
+                'createddate' => 1536497305
             ],
         ];
         parent::init();

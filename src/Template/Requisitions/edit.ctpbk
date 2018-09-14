@@ -1,0 +1,28 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Requisition $requisition
+ */
+?>
+<div class="card mb-3">
+    <div class="card-header">Edit Requisition</div>
+    <div class="card-body">
+    <?= $this->Form->create($requisition) ?>
+    <fieldset>
+        <?php
+            echo $this->Form->control('regnumber');
+            echo $this->Form->control('reqnumber');
+            echo $this->Form->control('request');
+            echo $this->Form->control('service_id', ['options' => $services, 'empty' => true]);
+            echo $this->Form->control('invoiceno');
+            echo $this->Form->control('invoicedate');
+            echo $this->Form->control('suppliername');
+            echo $this->Form->control('createddate');
+            echo $this->Form->control('payments._ids', ['options' => $payments]);
+            echo $this->Form->control('requisitions._ids', ['options' => $requisitions]);
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
+</div>

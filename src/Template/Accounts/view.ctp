@@ -4,25 +4,19 @@
  * @var \App\Model\Entity\Account $account
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-3">
-    <ul class="list-group">
-        <li class="active"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Account'), ['controller' => 'Accounts', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Account Type'), ['controller' => 'Accounts', 'action' => 'index']) ?></li>
-    </ul>
-</div>
-<div class="col-md-9">
-    <h3><?= h($account->name) ?></h3>
+<div class="card mb-3">
+        <div class="card-header">View</div>
+        <div class="card-body">
     <table class="table table-striped">
         <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($account->name) ?></td>
         </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Sub accounts') ?></h4>
-        <?php if (!empty($account->child_accounts)): ?>
+	
+    <?php if (!empty($account->child_accounts)): ?>
+    <div class="table">
+	<h4>Sub account(s)</h4>
         <table class="table table-bordered">
             <tr>
                 <!--<th scope="col"><?= __('Id') ?></th>-->

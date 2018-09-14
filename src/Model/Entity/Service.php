@@ -9,9 +9,9 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property int $account_type_id
- * @property string $amount
  *
  * @property \App\Model\Entity\AccountType $account_type
+ * @property \App\Model\Entity\Requisition[] $requisitions
  */
 class Service extends Entity
 {
@@ -28,7 +28,7 @@ class Service extends Entity
     protected $_accessible = [
         'name' => true,
         'account_type_id' => true,
-        'amount' => true,
-        'account_type' => true
+        'account_type' => true,
+        'requisitions' => true
     ];
 }

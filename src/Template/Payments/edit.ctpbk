@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Payment $payment
+ */
+?>
+<div class="card mb-3">
+    <div class="card-header">Edit Payment</div>
+    <div class="card-body">
+    <?= $this->Form->create($payment) ?>
+    <fieldset>
+        <?php
+            echo $this->Form->control('chequeno');
+            echo $this->Form->control('amount');
+            echo $this->Form->control('chequedate');
+            echo $this->Form->control('documentnumber');
+            echo $this->Form->control('narration');
+            echo $this->Form->control('collectedby');
+            echo $this->Form->control('requisitions._ids', ['options' => $requisitions]);
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
+</div>

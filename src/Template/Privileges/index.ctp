@@ -1,23 +1,27 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Privilege[]|\Cake\Collection\CollectionInterface $privileges
+ * @var \App\Model\Entity\Fiscal[]|\Cake\Collection\CollectionInterface $fiscals
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-12">
-    <h3><?= __('Privileges') ?></h3>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
+<!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              List</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('is_superadmin') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-        </thead>
-        <tbody>
+                  </thead>
+                          <tbody>
             <?php foreach ($privileges as $privilege): ?>
             <tr>
                 <td><?= $this->Number->format($privilege->id) ?></td>
@@ -32,6 +36,7 @@
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-</div>
-</div>
+                </table>
+              </div>
+            </div>
+          </div>

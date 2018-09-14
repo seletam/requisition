@@ -41,7 +41,6 @@ class RequisitionsTable extends Table
         $this->belongsTo('Services', [
             'foreignKey' => 'service_id'
         ]);
-		
         $this->belongsToMany('Payments', [
             'foreignKey' => 'requisition_id',
             'targetForeignKey' => 'payment_id',

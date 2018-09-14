@@ -4,15 +4,23 @@
  * @var \App\Model\Entity\Requisition $requisition
  */
 ?>
-<div class="row top-header-inner">
-<div class="col-md-3">
-    <ul class="list-group">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Requisitions'), ['controller' => 'Requisitions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Requisition'), ['controller' => 'Requisitions', 'action' => 'add']) ?> </li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $requisition->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $requisition->id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Requisitions'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Services'), ['controller' => 'Services', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Service'), ['controller' => 'Services', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Payments'), ['controller' => 'Payments', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Payment'), ['controller' => 'Payments', 'action' => 'add']) ?></li>
     </ul>
-</div>
-<div class="col-md-9">
+</nav>
+<div class="requisitions form large-9 medium-8 columns content">
     <?= $this->Form->create($requisition) ?>
     <fieldset>
         <legend><?= __('Edit Requisition') ?></legend>
@@ -26,7 +34,6 @@
             echo $this->Form->control('suppliername');
             echo $this->Form->control('createddate');
             echo $this->Form->control('payments._ids', ['options' => $payments]);
-            echo $this->Form->control('requisitions._ids', ['options' => $requisitions]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

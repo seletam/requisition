@@ -51,19 +51,10 @@ class RequisitionsController extends AppController
      */
     public function add()
     {
-        $requisition = $this->Requisitions->newEntity();    
-		$payment = $this->Requisitions->Payments->newEntity();		
+        $requisition = $this->Requisitions->newEntity();
         if ($this->request->is('post')) {
             $requisition = $this->Requisitions->patchEntity($requisition, $this->request->getData());
-			$payment = $this->Requisitions->Payments->patchEntity($payment, $this->request->getData());
-			
-            
-		    if ($this->Requisitions->save($requisition)) {
-				$requisition['_ids'] = $requisition->id;
-				$this->Requisitions->Payments->save($payment);
-				$payment['_ids'] = $payment->id;
-				//($payment_id = $payment->id)
-				
+            if ($this->Requisitions->save($requisition)) {
                 $this->Flash->success(__('The requisition has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -72,8 +63,7 @@ class RequisitionsController extends AppController
         }
         $services = $this->Requisitions->Services->find('list', ['limit' => 200]);
         $payments = $this->Requisitions->Payments->find('list', ['limit' => 200]);
-        $requisitions = $this->Requisitions->RequisitionsPayments->find('list', ['limit' => 200]);
-        $this->set(compact('requisition', 'services', 'payments', 'requisitions'));
+        $this->set(compact('requisition', 'services', 'payments'));
     }
 
     /**
@@ -86,7 +76,7 @@ class RequisitionsController extends AppController
     public function edit($id = null)
     {
         $requisition = $this->Requisitions->get($id, [
-            'contain' => ['Payments', 'Requisitions']
+            'contain' => ['Payments']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $requisition = $this->Requisitions->patchEntity($requisition, $this->request->getData());
@@ -99,8 +89,7 @@ class RequisitionsController extends AppController
         }
         $services = $this->Requisitions->Services->find('list', ['limit' => 200]);
         $payments = $this->Requisitions->Payments->find('list', ['limit' => 200]);
-        $requisitions = $this->Requisitions->RequisitionsPayments->find('list', ['limit' => 200]);
-        $this->set(compact('requisition', 'services', 'payments', 'requisitions'));
+        $this->set(compact('requisition', 'services', 'payments'));
     }
 
     /**
