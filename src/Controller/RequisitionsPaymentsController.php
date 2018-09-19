@@ -21,7 +21,7 @@ class RequisitionsPaymentsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Payments', 'Requisitions']
+            'contain' => ['Requisitions', 'Payments']
         ];
         $requisitionsPayments = $this->paginate($this->RequisitionsPayments);
 
@@ -38,7 +38,7 @@ class RequisitionsPaymentsController extends AppController
     public function view($id = null)
     {
         $requisitionsPayment = $this->RequisitionsPayments->get($id, [
-            'contain' => ['Payments', 'Requisitions']
+            'contain' => ['Requisitions', 'Payments']
         ]);
 
         $this->set('requisitionsPayment', $requisitionsPayment);
@@ -61,9 +61,9 @@ class RequisitionsPaymentsController extends AppController
             }
             $this->Flash->error(__('The requisitions payment could not be saved. Please, try again.'));
         }
-        $payments = $this->RequisitionsPayments->Payments->find('list', ['limit' => 200]);
         $requisitions = $this->RequisitionsPayments->Requisitions->find('list', ['limit' => 200]);
-        $this->set(compact('requisitionsPayment', 'payments', 'requisitions'));
+        $payments = $this->RequisitionsPayments->Payments->find('list', ['limit' => 200]);
+        $this->set(compact('requisitionsPayment', 'requisitions', 'payments'));
     }
 
     /**
@@ -87,9 +87,9 @@ class RequisitionsPaymentsController extends AppController
             }
             $this->Flash->error(__('The requisitions payment could not be saved. Please, try again.'));
         }
-        $payments = $this->RequisitionsPayments->Payments->find('list', ['limit' => 200]);
         $requisitions = $this->RequisitionsPayments->Requisitions->find('list', ['limit' => 200]);
-        $this->set(compact('requisitionsPayment', 'payments', 'requisitions'));
+        $payments = $this->RequisitionsPayments->Payments->find('list', ['limit' => 200]);
+        $this->set(compact('requisitionsPayment', 'requisitions', 'payments'));
     }
 
     /**

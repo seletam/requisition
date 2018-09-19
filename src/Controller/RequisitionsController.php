@@ -51,18 +51,29 @@ class RequisitionsController extends AppController
      */
     public function add()
     {
-        $requisition = $this->Requisitions->newEntity();
+        $requisition = $this->Requisitions->newEntity(['associated' => 'Payments']);
+		
+        //$payments = $this->Requisitions->Payments->newEntity();
         if ($this->request->is('post')) {
-            $requisition = $this->Requisitions->patchEntity($requisition, $this->request->getData());
-            if ($this->Requisitions->save($requisition)) {
-                $this->Flash->success(__('The requisition has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            $requisition = $this->Requisitions->patchEntity($requisition, $this->request->getData(), ['associated' => 'Payments']);
+			debug($requisition);
+			//debug($requisition);
+			if ($this->Requisitions->save($requisition, ['associated' => 'Payments'])) {
+				$requisition = $this->Requisitions->Payments->newEntity();
+				
+				$payments = $this->Requisitions->Payments->patchEntity($requisition, $this->request->getData());
+				if ($this->Requisitions->Payments->save($payments)) {
+			
+					//$this->Flash->success(__('The requisition has been saved.'));
+				
+					//return $this->redirect(['action' => 'index']);
+				
+				}
             }
             $this->Flash->error(__('The requisition could not be saved. Please, try again.'));
         }
         $services = $this->Requisitions->Services->find('list', ['limit' => 200]);
-        $payments = $this->Requisitions->Payments->find('list', ['limit' => 200]);
+		
         $this->set(compact('requisition', 'services', 'payments'));
     }
 

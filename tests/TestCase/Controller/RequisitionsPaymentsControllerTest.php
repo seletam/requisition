@@ -17,8 +17,8 @@ class RequisitionsPaymentsControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.requisitions_payments',
-        'app.payments',
-        'app.requisitions'
+        'app.requisitions',
+        'app.payments'
     ];
 
     /**

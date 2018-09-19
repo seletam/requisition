@@ -17,15 +17,15 @@ class RequisitionsPaymentsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'payment_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'requisition_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'payment_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'payment_fk_id_idx' => ['type' => 'index', 'columns' => ['payment_id'], 'length' => []],
-            'requisition_id_idx' => ['type' => 'index', 'columns' => ['requisition_id'], 'length' => []],
+            'requisition_fk_id_idx' => ['type' => 'index', 'columns' => ['requisition_id'], 'length' => []],
+            'pay_fk_id_idx' => ['type' => 'index', 'columns' => ['payment_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'pay_fk_id' => ['type' => 'foreign', 'columns' => ['payment_id'], 'references' => ['payments', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'requisition_fk_id' => ['type' => 'foreign', 'columns' => ['requisition_id'], 'references' => ['requisitions', 'id'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -43,9 +43,8 @@ class RequisitionsPaymentsFixture extends TestFixture
     {
         $this->records = [
             [
-                'id' => 1,
-                'payment_id' => 1,
-                'requisition_id' => 1
+                'requisition_id' => 1,
+                'payment_id' => 1
             ],
         ];
         parent::init();

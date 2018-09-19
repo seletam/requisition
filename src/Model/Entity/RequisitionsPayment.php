@@ -6,12 +6,11 @@ use Cake\ORM\Entity;
 /**
  * RequisitionsPayment Entity
  *
- * @property int $id
- * @property int $payment_id
  * @property int $requisition_id
+ * @property int $payment_id
  *
- * @property \App\Model\Entity\Payment $payment
  * @property \App\Model\Entity\Requisition $requisition
+ * @property \App\Model\Entity\Payment $payment
  */
 class RequisitionsPayment extends Entity
 {
@@ -26,9 +25,9 @@ class RequisitionsPayment extends Entity
      * @var array
      */
     protected $_accessible = [
-        'payment_id' => true,
         'requisition_id' => true,
-        'payment' => true,
-        'requisition' => true
+        'payment_id' => true,
+        'requisition' => true,
+        'payment' => true
     ];
 }

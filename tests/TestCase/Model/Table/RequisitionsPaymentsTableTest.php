@@ -25,8 +25,8 @@ class RequisitionsPaymentsTableTest extends TestCase
      */
     public $fixtures = [
         'app.requisitions_payments',
-        'app.payments',
-        'app.requisitions'
+        'app.requisitions',
+        'app.payments'
     ];
 
     /**
@@ -59,16 +59,6 @@ class RequisitionsPaymentsTableTest extends TestCase
      * @return void
      */
     public function testInitialize()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     */
-    public function testValidationDefault()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -38,8 +38,8 @@ class PaymentsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsToMany('Requisitions', [
-            'foreignKey' => 'payment_id',
-            'targetForeignKey' => 'requisition_id',
+			'targetForeignKey' => 'payment_id',
+			'foreignKey' => 'requistion_id',
             'joinTable' => 'requisitions_payments'
         ]);
     }
